@@ -8,7 +8,6 @@ done
 
 ## Create 'user' and 'readonly' database users
 sudo mysql -u root -e "\
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';\
 CREATE USER IF NOT EXISTS 'user'@'localhost' IDENTIFIED BY 'password';\
 CREATE USER IF NOT EXISTS 'readonly'@'localhost' IDENTIFIED BY 'password';\
 GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost';\
