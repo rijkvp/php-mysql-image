@@ -21,7 +21,9 @@ RUN apt-get update && apt-get install -y \
 RUN locale-gen en_US.UTF-8
 ENV LANG=en_US.UTF-8
 
-RUN useradd -l -u 33333 -G sudo -md /home/dev -s /bin/bash -p dev dev
+# Create user and allow sudo access without password
+ARG USERNAME=gitpod
+RUN useradd -l -u 33333 -G sudo -md /home/$USERNAME -s /bin/bash -p dev dev
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Configure phpMyAdmin
@@ -34,6 +36,6 @@ RUN cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf &
 RUN rm -rf /var/www/html
 COPY public /var/www/html
 
-USER dev
-WORKDIR /home/dev
+USER $USERNAME
+WORKDIR /home/$USERNAME
 COPY setup ./setup
