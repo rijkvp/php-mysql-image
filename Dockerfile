@@ -23,7 +23,7 @@ ENV LANG=en_US.UTF-8
 
 # Create user and allow sudo access without password
 ARG USERNAME=gitpod
-RUN useradd -l -u 33333 -G sudo -md /home/$USERNAME -s /bin/bash -p dev dev
+RUN useradd -l -u 33333 -G sudo -md /home/$USERNAME -s /bin/bash -p $USERNAME $USERNAME
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Configure phpMyAdmin
